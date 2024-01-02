@@ -15,8 +15,9 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Yara',
       theme: ThemeData.light(useMaterial3: true).copyWith(
-          scaffoldBackgroundColor: Pallete.whiteColor,
-          appBarTheme: const AppBarTheme(backgroundColor: Pallete.whiteColor)),
+        scaffoldBackgroundColor: Pallete.whiteColor,
+        appBarTheme: const AppBarTheme(backgroundColor: Pallete.whiteColor),
+      ),
       home: const HomePage(),
     );
   }

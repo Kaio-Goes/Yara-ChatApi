@@ -17,7 +17,6 @@ class OpenAiService {
         body: jsonEncode({
           "model": "gpt-3.5-turbo",
           "messages": [
-            {"role": "system", "content": "You are a helpful assistant."},
             {
               "role": "user",
               "content":
@@ -37,7 +36,6 @@ class OpenAiService {
           case 'yes':
           case 'Yes.':
           case 'yes.':
-          case 'YES':
             final res = await dallEAPI(prompt);
             return res;
           default:
@@ -90,6 +88,7 @@ class OpenAiService {
           'Authorization': 'Bearer $openAIAPIkey'
         },
         body: jsonEncode({
+          "model": "dall-e-3",
           'prompt': prompt,
           'n': 1,
         }),

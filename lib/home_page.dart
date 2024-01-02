@@ -3,6 +3,7 @@ import 'package:speech_to_text/speech_recognition_result.dart';
 import 'package:speech_to_text/speech_to_text.dart';
 import 'package:yara/constants/pallete.dart';
 import 'package:yara/feature_box.dart';
+import 'package:yara/service/openai_service.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -14,6 +15,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   final speechToText = SpeechToText();
   String lastWords = '';
+  final OpenAiService openAiService = OpenAiService();
 
   @override
   void initState() {
@@ -155,6 +157,8 @@ class _HomePageState extends State<HomePage> {
           if (await speechToText.hasPermission && speechToText.isNotListening) {
             await startListening();
           } else if (speechToText.isListening) {
+            final speech = await openAiService.isArtPromptAPI(lastWords);
+            print(speech);
             await stopListening();
           } else {
             initSpeechToText();

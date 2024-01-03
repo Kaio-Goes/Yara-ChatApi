@@ -17,7 +17,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   final speechToText = SpeechToText();
   String lastWords = '';
-  final OpenAiService openAiService = OpenAiService();
+  final OpenAIService openAIService = OpenAIService();
   final flutterTts = FlutterTts();
   String? generatedContent;
   String? generatedImageUrl;
@@ -166,7 +166,7 @@ class _HomePageState extends State<HomePage> {
             ),
             // features list
             Visibility(
-              visible: generatedContent == null,
+              visible: generatedContent == null && generatedImageUrl == null,
               child: Column(
                 children: [
                   SlideInLeft(
@@ -211,7 +211,7 @@ class _HomePageState extends State<HomePage> {
                 speechToText.isNotListening) {
               await startListening();
             } else if (speechToText.isListening) {
-              final speech = await openAiService.isArtPromptAPI(lastWords);
+              final speech = await openAIService.isArtPromptAPI(lastWords);
               if (speech.contains('https')) {
                 generatedImageUrl = speech;
                 generatedContent = null;
